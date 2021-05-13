@@ -22,26 +22,26 @@
 
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
-        <a class="navbar-brand" href="{{route('index')}}">WEB-30 BLOG</a>
+    <div class="container" style="background-color:blue">
+        <a class="navbar-brand" href="{{route('index')}}" style="color:red">WEB-30 BLOG</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="{{route('index')}}">Домой
+            <ul class="navbar-nav ml-auto" style="color:gold">
+                <li class="nav-item active" >
+                    <a class="nav-link" href="{{route('index')}}" style="color:gold">Домой
                         <span class="sr-only">(current)</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('about')}}">О нас</a>
+                    <a class="nav-link" href="{{route('about')}}"style="color:gold">О нас</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('services')}}">Наши сервисы</a>
+                    <a class="nav-link" href="{{route('services')}}"style="color:gold">Наши сервисы</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('contacts')}}">Наши контакты</a>
+                    <a class="nav-link" href="{{route('contacts')}}"style="color:gold">Наши контакты</a>
                 </li>
             </ul>
         </div>

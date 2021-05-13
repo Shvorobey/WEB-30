@@ -3840,8 +3840,9 @@ input[type="button"].btn-block {
 }
 
 .nav-link {
-  display: block;
-  padding: 0.5rem 1rem;
+    display: block;
+    padding: 0.5rem 1rem;
+    color: gold;
 }
 
 .nav-link:hover, .nav-link:focus {
@@ -3849,7 +3850,7 @@ input[type="button"].btn-block {
 }
 
 .nav-link.disabled {
-  color: #6c757d;
+  color: gold;
 }
 
 .nav-tabs {
