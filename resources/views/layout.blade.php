@@ -43,6 +43,16 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{route('contacts')}}"style="color:gold">Наши контакты</a>
                 </li>
+                @if(\Illuminate\Support\Facades\Auth::check())
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('admin_post_get')}}"style="color:gold">Администрирование</a>
+                    </li>
+                    @endif
+                <li class="nav-item">
+                    <a class="nav-link" style="color: white"
+                       href="{{route('login')}}">@if(\Illuminate\Support\Facades\Auth::check()){{\Illuminate\Support\Facades\Auth::user()->name}}
+                    @else Вход @endif</a>
+                </li>
             </ul>
         </div>
     </div>
@@ -60,48 +70,51 @@
 
             <!-- Search Widget -->
             <div class="card my-4">
-                <h5 class="card-header">Search</h5>
+                <h5 class="card-header">Курсы валют</h5>
                 <div class="card-body">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search for...">
-                        <span class="input-group-btn">
-                  <button class="btn btn-secondary" type="button">Go!</button>
-                </span>
-                    </div>
+                    <ul class="list-group-flush">
+                        @inject('currency', '\App\Currency')
+                        {{$currency->get_currency()}}
+                    </ul>
                 </div>
             </div>
 
             <!-- Categories Widget -->
             <div class="card my-4">
-                <h5 class="card-header">Categories</h5>
+                <h5 class="card-header">Категории</h5>
                 <div class="card-body">
                     <div class="row">
                         <div class="col-lg-6">
                             <ul class="list-unstyled mb-0">
+                                @inject('categories', '\App\Category')
+                                @foreach($categories->show_categories() as $category)
                                 <li>
-                                    <a href="#">Web Design</a>
+                                    <a href="{{route('post_by_category', $category->key)}}">{{$category->title}}</a>
                                 </li>
-                                <li>
-                                    <a href="#">HTML</a>
-                                </li>
-                                <li>
-                                    <a href="#">Freebies</a>
-                                </li>
+                                @endforeach
                             </ul>
                         </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="card my-4">
+                @inject('authors', '\App\Author')
+                <h5 class="card-header">Лучшие авторы из {{$authors->show_count()}}</h5>
+                <div class="card-body">
+                    <div class="row">
                         <div class="col-lg-6">
                             <ul class="list-unstyled mb-0">
-                                <li>
-                                    <a href="#">JavaScript</a>
-                                </li>
-                                <li>
-                                    <a href="#">CSS</a>
-                                </li>
-                                <li>
-                                    <a href="#">Tutorials</a>
-                                </li>
+
+                                @foreach($authors->show_authors() as $author)
+                                    <li>
+                                        <a href="{{route('post_by_author', $author->key)}}">{{$author->name}}</a>
+                                    </li>
+                                @endforeach
                             </ul>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -125,7 +138,7 @@
 <!-- Footer -->
 <footer class="py-5 bg-dark">
     <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Шворобей 2021</p>
+        <p class="m-0 text-center text-white">Copyright &copy; Shvorobey 2021</p>
     </div>
     <!-- /.container -->
 </footer>

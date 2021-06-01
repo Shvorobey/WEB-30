@@ -18,6 +18,15 @@
                     <h2 class="card-title">{{$post->title}}</h2>
                     <p class="card-text">{{mb_substr($post->body, 0, 200)}} ...</p>
                     <a href="{{route('single_post', $post->id)}}" class="btn btn-primary">Читать далее &rarr;</a>                </div>
+                <div class="card-footer text-muted">
+                    Опубликован {{date('d F Y в G:i', strtotime($post->created_at))}}
+                </div>
+                <div class="card-footer text-muted">
+                    Категории:
+                    @foreach($post->category as $cat)
+                        <a style="white-space: pre" href="{{route('post_by_category', $cat->key)}}">   {{$cat->title}}   </a>
+                    @endforeach
+                </div>
             </div>
     @endforeach
 

@@ -10,4 +10,17 @@ class Author extends Model
     {
         return $this->hasMany(Post::class);
     }
+
+    public function show_authors()
+    {
+        $authors = Author::orderBy('count_posts', 'DESC')
+            ->limit(5)
+            ->get();
+
+        return $authors;
+    }
+
+    public function show_count(){
+        return Author::all()->count();
+    }
 }

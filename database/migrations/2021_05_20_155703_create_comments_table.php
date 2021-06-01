@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAuthorsTable extends Migration
+class CreateCommentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateAuthorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('authors', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('key');
-            $table->string('name');
-            $table->integer('count_posts');
+        Schema::create('comments', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->unsignedInteger('post_id');
+            $table->string('author');
+            $table->text('comment');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateAuthorsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('authors');
+        Schema::dropIfExists('comments');
     }
 }
