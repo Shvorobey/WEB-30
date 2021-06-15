@@ -16,4 +16,8 @@ class Post extends Model
         return $this->belongsToMany(Category::class);
     }
 
+    public function getRandomPost(){
+
+      return Post::inRandomOrder()->limit(1)->get();
+    }
 }

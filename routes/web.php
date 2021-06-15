@@ -40,11 +40,11 @@ Route::get('/admin/admin_post', 'AdminPostsController@delete')->name('admin_post
 
 Route::delete('/admin/admin_post', 'AdminPostsController@delete')->name('admin_post_post');
 
-Route::get('/404', function (){
-    return view('404');
-})->name('404');
+Route::get('/404', function (){return view('404');})->name('404');
 
+//Mail subscribed
 
+Route::post('/subscribed', MailSubscriberController::class)->name('subscribed');
 // AUTH
 Auth::routes();
 

@@ -11,6 +11,12 @@ class PostByAuthorController extends Controller
     {
         $author = Author::where('key', '=', $key)->first();
 
-        return view('posts_by_author', ['author' => $author]);
+        $choose_color = [
+          'aaaa' => 'green',
+          'bbbb' => 'yelow'
+        ];
+    $color = $choose_color[$post->series];
+
+        return view('posts_by_author', ['author' => $author, 'color'=>$color]);
     }
 }

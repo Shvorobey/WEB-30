@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-
+@include('preloader')
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -64,70 +64,9 @@
     <div class="row">
 
 @yield('content')
+@yield('sidebar')
 
-        <!-- Sidebar Widgets Column -->
-        <div class="col-md-4">
 
-            <!-- Search Widget -->
-            <div class="card my-4">
-                <h5 class="card-header">Курсы валют</h5>
-                <div class="card-body">
-                    <ul class="list-group-flush">
-                        @inject('currency', '\App\Currency')
-                        {{$currency->get_currency()}}
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Categories Widget -->
-            <div class="card my-4">
-                <h5 class="card-header">Категории</h5>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <ul class="list-unstyled mb-0">
-                                @inject('categories', '\App\Category')
-                                @foreach($categories->show_categories() as $category)
-                                <li>
-                                    <a href="{{route('post_by_category', $category->key)}}">{{$category->title}}</a>
-                                </li>
-                                @endforeach
-                            </ul>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-            <div class="card my-4">
-                @inject('authors', '\App\Author')
-                <h5 class="card-header">Лучшие авторы из {{$authors->show_count()}}</h5>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <ul class="list-unstyled mb-0">
-
-                                @foreach($authors->show_authors() as $author)
-                                    <li>
-                                        <a href="{{route('post_by_author', $author->key)}}">{{$author->name}}</a>
-                                    </li>
-                                @endforeach
-                            </ul>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-            <!-- Side Widget -->
-            <div class="card my-4">
-                <h5 class="card-header">Side Widget</h5>
-                <div class="card-body">
-                    You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
-                </div>
-            </div>
-
-        </div>
 
     </div>
     <!-- /.row -->
@@ -137,7 +76,14 @@
 
 <!-- Footer -->
 <footer class="py-5 bg-dark">
+
     <div class="container">
+        <p class="m-0 text-center text-white">Подпишись на нашу новостную рассылку</p>
+        <form class="m-0 text-center text-white" method="post" action="{{route('subscribed')}}">
+            @csrf
+            <input type="email" name="mail">
+            <input type="submit" value="Подписаться">
+        </form>
         <p class="m-0 text-center text-white">Copyright &copy; Shvorobey 2021</p>
     </div>
     <!-- /.container -->

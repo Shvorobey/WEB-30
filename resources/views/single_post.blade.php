@@ -5,8 +5,10 @@
 @section('content')
     <!-- Blog Entries Column -->
     <div class="col-md-8">
-
-        <h1 class="my-4">{{$post->title}}</h1>
+        @if(\Session::has('flash'))
+            <p>{{\Session::get('flash')}}</p>
+        @endif
+        <h1 class="my-4" style="color: {{$post->color}}">{{$post->title}}</h1>
 
         <!-- Blog Post -->
             <div class="card mb-4">
@@ -52,5 +54,9 @@
         <p>Войдите чтобы иметь возможность видеть комментарии и комментировать</p>
         @endif
     </div>
+
+@endsection
+@section('sidebar')
+    @include('side_bar')
 @endsection
 
