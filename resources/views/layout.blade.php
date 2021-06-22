@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-@include('preloader')
+{{--@include('preloader')--}}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -42,6 +42,9 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{route('contacts')}}"style="color:gold">Наши контакты</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('cart')}}"style="color:gold">Корзина</a>
                 </li>
                 @if(\Illuminate\Support\Facades\Auth::check())
                     <li class="nav-item">

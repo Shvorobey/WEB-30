@@ -43,8 +43,23 @@ Route::delete('/admin/admin_post', 'AdminPostsController@delete')->name('admin_p
 Route::get('/404', function (){return view('404');})->name('404');
 
 //Mail subscribed
-
 Route::post('/subscribed', MailSubscriberController::class)->name('subscribed');
+
+// Cart actions
+Route::get('/cart/add_to_cart/{id}', 'CartAction@add')->name('add_to_cart');
+
+Route::get('/cart', 'CartAction@show')->name('cart');
+
+Route::get('/cart/delete/{id}', 'CartAction@delete')->name('delete_from_cart');
+
+Route::post('/cart/update', 'CartAction@update')->name('update_cart');
+
+Route::get('/cart/checkout', function (){return view('checkout');})->name('checkout');
+
+Route::post('/cart/checkout', '\\' . \App\Http\Controllers\OrderController::class)->name('checkout');
+
+Route::get('/order/{id}', '\\' . \App\Http\Controllers\OrderReceivedController::class)->name('order');
+
 // AUTH
 Auth::routes();
 

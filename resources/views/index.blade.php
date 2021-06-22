@@ -5,7 +5,9 @@
 @section('content')
     <!-- Blog Entries Column -->
     <div class="col-md-8">
-
+        @if(\Session::has('flash'))
+            <p>{{\Session::get('flash')}}</p>
+        @endif
         <h1 class="my-4">Page Heading
             <small>Secondary Text</small>
         </h1>
@@ -18,6 +20,7 @@
                 <h2 class="card-title">{{$post->title}}</h2>
                 <p class="card-text">{{mb_substr($post->body, 0, 200)}} ...</p>
                 <a href="{{route('single_post', $post->id)}}" class="btn btn-primary">Читать далее &rarr;</a>
+                <a href="{{route('add_to_cart', $post->id)}}" class="btn btn-success">Добавить</a>
             </div>
             <div class="card-footer text-muted">
                 Опубликован {{date('d F Y в G:i', strtotime($post->created_at))}} автором
